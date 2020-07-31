@@ -1,11 +1,11 @@
 let body = document.body;
 let url = window.location.toString();
 
-const getNameFromUrl= (url) => {
+const getNameFromUrl = (url) => {
   let getUrl = url.split('=');
   let name = getUrl[1]; //
   if(name == undefined) {
-  name = 'badunka';
+  name = 'makaresy';
   }
 return name;
 }
