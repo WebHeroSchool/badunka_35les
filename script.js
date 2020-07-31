@@ -1,13 +1,17 @@
 let body = document.body;
 let url = window.location.toString();
 
-const getNameFromUrl= (url) => {
-  let getUrl = url.split('=');
-  let userNameOnString = prompt('Введите ник пользователя');
-  return userNameOnString;
+let getUsername = (url) => {
+    let getUrl = url.split('=');
+    let name = getUrl[1];
+    if(isNaN(name)){
+        name = 'badunka';
+    }
+    return name;
 }
+let  Username = getUsername(url);
 
-fetch(`https://api.github.com/users/${getNameFromUrl(url)}`)
+fetch( "https://api.github.com/users/" + Username)
     .then(res => res.json())
     .then(json => {
         console.log(json.avatar_url);
