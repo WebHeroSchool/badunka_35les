@@ -1,17 +1,16 @@
 let body = document.body;
 let url = window.location.toString();
 
-let getUsername = (url) => {
-    let getUrl = url.split('=');
-    let name = getUrl[1];
-    if(isNaN(name)){
-        name = 'badunka';
-    }
-    return name;
+const getNameFromUrl= (url) => {
+  let getUrl = url.split('=');
+  let name = getUrl[1]; //
+  if(name == undefined) {
+  name = 'badunka';
+  }
+return name;
 }
-let  Username = getUsername(url);
 
-fetch( "https://api.github.com/users/" + Username)
+fetch(`https://api.github.com/users/${getNameFromUrl(url)}`)
     .then(res => res.json())
     .then(json => {
         console.log(json.avatar_url);
@@ -30,15 +29,15 @@ fetch( "https://api.github.com/users/" + Username)
             name.innerHTML = 'Информация о пользователе недоступна';
         }
         body.append(name);
+        name.addEventListener("click", () => window.location = json.html_url);
 
         let bio = document.createElement('p');
-        bio.classList.add('link');
         if (json.bio != null) {
             bio.innerHTML = json.bio;
         } else {
             bio.innerHTML = 'Информация о пользователе недоступна';
         }
         body.append(bio);
-        name.addEventListener("click", () => window.location = json.html_url);
+
     })
     .catch(err => alert('Информация о пользователе недоступна'));
