@@ -5,7 +5,7 @@ const getNameFromUrl = (url) => {
   let getUrl = url.split('=');
   let name = getUrl[1]; //
   if(name == undefined) {
-  name = 'makaresy';
+  name = 'badunka';
   }
 return name;
 }
@@ -29,7 +29,7 @@ fetch(`https://api.github.com/users/${getNameFromUrl(url)}`)
             name.innerHTML = 'Информация о пользователе недоступна';
         }
         body.append(name);
-        name.addEventListener("click", () => window.location = json.html_url);
+        name.addEventListener("click", () => window.location = "index.html");
 
         let bio = document.createElement('p');
         if (json.bio != null) {
