@@ -29,7 +29,7 @@ fetch(`https://api.github.com/users/${getNameFromUrl(url)}`)
             name.innerHTML = 'Информация о пользователе недоступна';
         }
         body.append(name);
-        name.addEventListener("click", () => window.location = "index.html");
+        name.addEventListener("click", () => window.location = 'https://webheroschool.github.io/badunka_35les/');
 
         let bio = document.createElement('p');
         if (json.bio != null) {
