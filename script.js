@@ -1,8 +1,16 @@
 let body = document.body;
-let string = window.location.search;
-let url = 'https://api.github.com/users/badunka';
+let url = window.location.toString();
 
-fetch(url)
+const getNameFromUrl = (url) => {
+  let getUrl = url.split('=');
+  let name = getUrl[1]; //
+  if(name == undefined) {
+  name = 'badunka';
+  }
+return name;
+}
+
+fetch(`https://api.github.com/users/${getNameFromUrl(url)}`)
     .then(res => res.json())
     .then(json => {
         console.log(json.avatar_url);
@@ -21,7 +29,7 @@ fetch(url)
             name.innerHTML = 'Информация о пользователе недоступна';
         }
         body.append(name);
-        name.addEventListener("click", () => window.location = json.html_url);
+        name.addEventListener("click", () => window.location = 'https://webheroschool.github.io/badunka_35les/');
 
         let bio = document.createElement('p');
         if (json.bio != null) {
